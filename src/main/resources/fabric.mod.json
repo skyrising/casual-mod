@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "casual-mod",
+  "version": "${version}",
+
+  "name": "Casual Mod",
+  "description": "...",
+  "authors": [
+    "skyrising"
+  ],
+  "contact": {
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "de.skyrising.casual.CasualMod"
+    ]
+  },
+  "mixins": [
+    "casual-mod.mixins.json"
+  ],
+  "depends": {
+  }
+}
