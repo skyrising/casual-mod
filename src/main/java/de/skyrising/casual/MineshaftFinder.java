@@ -9,12 +9,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.MineshaftFeature;
 
 public class MineshaftFinder implements StructureFinder<MineshaftFeature> {
-    private final WorldDataTracker data;
-
-    MineshaftFinder(WorldDataTracker data) {
-        this.data = data;
-    }
-
     @Override
     public boolean isStartChunk(WorldChunk chunk) {
         ChunkPos pos = chunk.getPos();

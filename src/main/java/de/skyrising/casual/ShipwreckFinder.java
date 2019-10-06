@@ -27,10 +27,10 @@ public class ShipwreckFinder implements StructureFinder<ShipwreckFeature> {
 
     @Override
     public boolean isStartBlock(World world, BlockPos pos, @Nullable BlockEntity blockEntity) {
-        if (!(blockEntity instanceof ChestBlockEntity) || world.getBlockState(pos).get(ChestBlock.WATERLOGGED)) return false;
+        if (!(blockEntity instanceof ChestBlockEntity) || !world.getBlockState(pos).get(ChestBlock.WATERLOGGED)) return false;
         Biome biome = world.getBiome(pos);
         Biome.Category biomeCategory = biome.getCategory();
-        return biomeCategory == Biome.Category.OCEAN || true;
+        return biomeCategory == Biome.Category.OCEAN; // || true;
     }
 
     @Override
@@ -60,8 +60,6 @@ public class ShipwreckFinder implements StructureFinder<ShipwreckFeature> {
             }
         }
         //System.out.printf("%s: chest facing %s\n", pos, chestFacing);
-        int[] diff = new int[4];
-        for (int i = 0; i < 4; i++) diff[i] = stairs[i] - trapdoors[i];
         int chestX = 4;
         int chestY = 2;
         int chestZ = 0;
@@ -152,7 +150,7 @@ public class ShipwreckFinder implements StructureFinder<ShipwreckFeature> {
             data.markers.put(pos, new WorldDataTracker.Marker(WorldDataTracker.MarkerType.CHEST, pos));
         }
         if (chestZ == 0 || mutablePos.getZ() != 164) {
-            //System.out.printf("%s stairs, %s trapdoors, %s diff\n", Arrays.toString(stairs), Arrays.toString(trapdoors), Arrays.toString(diff));
+            //System.out.printf("%s stairs, %s trapdoors\n", Arrays.toString(stairs), Arrays.toString(trapdoors));
         }
         return Either.left(foundChunk);
     }

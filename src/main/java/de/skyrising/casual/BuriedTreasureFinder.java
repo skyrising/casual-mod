@@ -1,6 +1,7 @@
 package de.skyrising.casual;
 
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -12,9 +13,8 @@ import javax.annotation.Nullable;
 public class BuriedTreasureFinder implements StructureFinder<BuriedTreasureFeature> {
     @Override
     public boolean isStartBlock(World world, BlockPos pos, @Nullable BlockEntity blockEntity) {
-        Biome biome = world.getBiome(pos);
-        Biome.Category biomeCategory = biome.getCategory();
-        return biomeCategory == Biome.Category.BEACH
+        if (!(blockEntity instanceof ChestBlockEntity)) return false;
+        return world.getBiome(pos).getCategory() == Biome.Category.BEACH
             && (pos.getX() & 0xf) == 9 && (pos.getZ() & 0xf) == 9
             && pos.getY() > 40 && pos.getY() < 62;
     }
